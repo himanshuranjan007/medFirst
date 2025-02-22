@@ -1,16 +1,16 @@
+// "use client"
 import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
+import ClientLayoutWrapper from "@/components/ClientLayoutWrapper"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "MedFirst - Smart OPD Management",
   description: "Efficient hospital bed queuing and OPD management system",
-    generator: 'v0.dev'
+  generator: 'v0dev'
 }
 
 export default function RootLayout({
@@ -20,15 +20,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.className} flex flex-col min-h-screen`}>
-        <Header />
-        <main className="flex-grow">{children}</main>
-        <Footer />
+      <body>
+        <ClientLayoutWrapper>{children}</ClientLayoutWrapper>
       </body>
     </html>
   )
 }
-
-
 
 import './globals.css'
