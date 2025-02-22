@@ -3,15 +3,14 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { CrossIcon as MedicalCross, Menu, X } from "lucide-react"
+import Image from "next/image"
+import { Menu, X } from "lucide-react"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { motion, AnimatePresence } from "framer-motion"
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-
-
 
   const navItems = [
     { href: "/", label: "Home" },
@@ -37,8 +36,7 @@ export function Header() {
     >
       <div className="container flex h-20 items-center justify-between">
         <Link href="/" className="flex items-center space-x-2">
-          <MedicalCross className="h-8 w-8 text-primary" />
-          <span className="text-2xl font-bold text-primary">MedFirst</span>
+          <Image src="/logonew.png" alt="MedFirst Logo" width={200} height={200} className="rounded-md absolute left-4"/>
         </Link>
         <nav className="hidden lg:flex items-center space-x-8">
           {navItems.map((item) => (
@@ -55,7 +53,7 @@ export function Header() {
           <Button variant="outline" asChild className="hidden sm:inline-flex">
             <Link href="/login">Login</Link>
           </Button>
-          <Button asChild className="hidden sm:inline-flex">
+          <Button asChild className="hidden sm:inline-flex  bg-orange-500">
             <Link href="/register">Register</Link>
           </Button>
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
