@@ -50,10 +50,10 @@ export function Header() {
           ))}
         </nav>
         <div className="flex items-center space-x-4">
-          <Button variant="outline" asChild className="hidden sm:inline-flex">
+          <Button variant="outline" asChild className="hidden sm:inline-flex border border-black">
             <Link href="/login">Login</Link>
           </Button>
-          <Button asChild className="hidden sm:inline-flex  bg-orange-500">
+          <Button asChild className="hidden sm:inline-flex border border-black bg-orange-500">
             <Link href="/register">Register</Link>
           </Button>
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
