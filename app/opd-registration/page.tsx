@@ -21,20 +21,34 @@ export default function OPDRegistrationPage() {
           <div className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="name">Name</Label>
-              <Input id="name" required className="hover:border-orange-500 focus:border-orange-500" />
+              <Input
+                id="name"
+                required
+                className="hover:border-orange-500 focus:border-transparent focus:ring-0 border border-gray-300"
+              />
             </div>
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" required className="hover:border-orange-500 focus:border-orange-500" />
+              <Input
+                id="email"
+                type="email"
+                required
+                className="hover:border-orange-500 focus:border-transparent focus:ring-0 border border-gray-300"
+              />
             </div>
             <div className="space-y-2">
               <Label htmlFor="age">Age</Label>
-              <Input id="age" type="number" required className="hover:border-orange-500 focus:border-orange-500" />
+              <Input
+                id="age"
+                type="number"
+                required
+                className="hover:border-orange-500 focus:border-transparent focus:ring-0 border border-gray-300"
+              />
             </div>
             <div className="space-y-2">
               <Label htmlFor="gender">Gender</Label>
               <Select>
-                <SelectTrigger>
+                <SelectTrigger className="hover:border-orange-500 focus:border-transparent focus:ring-0 border border-gray-300">
                   <SelectValue placeholder="Select gender" />
                 </SelectTrigger>
                 <SelectContent>
@@ -51,28 +65,50 @@ export default function OPDRegistrationPage() {
           <div className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="contact">Contact Number</Label>
-              <Input id="contact" type="tel" required className="hover:border-orange-500 focus:border-orange-500"/>
+              <Input
+                id="contact"
+                type="tel"
+                required
+                className="hover:border-orange-500 focus:border-transparent focus:ring-0 border border-gray-300"
+              />
             </div>
             <div className="space-y-2">
               <Label htmlFor="address">Address</Label>
-              <Textarea id="address" required className="hover:border-orange-500 focus:border-orange-500" />
+              <Textarea
+                id="address"
+                required
+                className="hover:border-orange-500 focus:border-transparent focus:ring-0 border border-gray-300"
+              />
             </div>
             <div className="space-y-2">
               <Label htmlFor="pincode">Pincode</Label>
-              <Input id="pincode" required className="hover:border-orange-500 focus:border-orange-500"/>
+              <Input
+                id="pincode"
+                required
+                className="hover:border-orange-500 focus:border-transparent focus:ring-0 border border-gray-300"
+              />
             </div>
             <div className="space-y-2">
               <Label htmlFor="department">Department</Label>
-              <Select >
-                <SelectTrigger>
-                  <SelectValue placeholder="Select department"  />
-                </SelectTrigger >
-                <SelectContent >
+              <Select>
+                <SelectTrigger className="hover:border-orange-500 focus:border-transparent focus:ring-0 border border-gray-300">
+                  <SelectValue placeholder="Select department" />
+                </SelectTrigger>
+                <SelectContent>
                   <SelectItem value="cardiology">Cardiology</SelectItem>
                   <SelectItem value="orthopedics">Orthopedics</SelectItem>
                   <SelectItem value="pediatrics">Pediatrics</SelectItem>
                 </SelectContent>
               </Select>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="reason">Reason for Visit</Label>
+              <Textarea
+                id="reason"
+                placeholder="Enter the reason for your visit"
+                required
+                className="hover:border-orange-500 focus:border-transparent focus:ring-0 border border-gray-300"
+              />
             </div>
           </div>
         )
@@ -88,7 +124,7 @@ export default function OPDRegistrationPage() {
             </div>
             <div className="space-y-2">
               <Label htmlFor="report">Upload Report (Optional)</Label>
-              <Input className="hover:border-orange-500 focus:border-orange-500"
+              <Input className="hover:border-orange-500 focus:border-transparent focus:ring-0 border border-gray-300"
                 id="report"
                 type="file"
                 accept=".pdf,.doc,.docx"
@@ -113,8 +149,8 @@ export default function OPDRegistrationPage() {
   }
 
   return (
-    <div className="flex min-h-screen">
-      <div className="flex-1 bg-white">
+    <div className="flex min-h-screen" style={{ backgroundImage: "url('/opd.jpg')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <div className="flex-1 bg-white bg-opacity-65">
         <div className="container flex min-h-screen flex-col items-center justify-center py-8">
           <Card className="w-full max-w-lg transform transition-transform duration-300 hover:scale-105">
             <CardHeader className="space-y-1">
@@ -164,7 +200,6 @@ export default function OPDRegistrationPage() {
           </Card>
         </div>
       </div>
-      <div className="hidden lg:flex flex-1 bg-orange-500"></div>
     </div>
   )
 }
