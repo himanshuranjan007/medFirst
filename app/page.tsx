@@ -82,19 +82,19 @@ export default function Home() {
       <section className="py-16 md:py-24 bg-orange-50">
         <div className="container px-4 md:px-6">
           <h2 className="text-3xl font-bold tracking-tighter text-center mb-12">What Our Community Says</h2>
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 ">
             <TestimonialCard
               name="Emily Johnson"
               role="Patient"
-              image="/placeholder.svg"
+              image="/doctor1.webp"
               quote="Exceptional care and attention."
               description="The staff was attentive, and the facilities were top-notch. I couldn't have asked for better care."
-              rating={5}
+              rating={4}
             />
             <TestimonialCard
               name="Dr. Michael Chen"
               role="Doctor"
-              image="/placeholder.svg"
+              image="/doctor2.webp"
               quote="State-of-the-art facilities."
               description="As a doctor, I'm impressed by the hospital's commitment to providing the best care possible."
               rating={5}
@@ -102,7 +102,7 @@ export default function Home() {
             <TestimonialCard
               name="Sarah Thompson"
               role="Nurse"
-              image="/placeholder.svg"
+              image="/doctor3.jpg"
               quote="Efficient and caring team."
               description="Our nursing staff works tirelessly to ensure patient comfort and quick recovery."
               rating={4}
