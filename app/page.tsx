@@ -33,9 +33,9 @@ export default function Home() {
             </div>
             <div className="mx-auto lg:mr-0">
               <Image
-                src="/placeholder.svg"
+                src="/front.webp"
                 alt="Healthcare Dashboard"
-                className="aspect-video overflow-hidden rounded-xl object-cover shadow-2xl"
+                className="aspect-video overflow-hidden rounded-xl object-cover shadow-2xl w-full"
                 width={500}
                 height={300}
               />
