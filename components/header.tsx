@@ -1,95 +1,111 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import Link from "next/link"
-import { Plus } from "lucide-react"
-
 import { Button } from "@/components/ui/button"
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu"
+import { CrossIcon as MedicalCross, Menu, X } from "lucide-react"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { motion, AnimatePresence } from "framer-motion"
 
 export function Header() {
+  const [isOpen, setIsOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+
+
+  const navItems = [
+    { href: "/", label: "Home" },
+    { href: "/about", label: "About" },
+    { href: "/hospitals", label: "Hospitals" },
+    { href: "/services", label: "Services" },
+  ]
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-white">
-      <div className="container flex h-16 items-center justify-between px-4 md:px-6">
+    <header
+      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
+        scrolled ? "bg-white shadow-md" : "bg-transparent"
+      }`}
+    >
+      <div className="container flex h-20 items-center justify-between">
         <Link href="/" className="flex items-center space-x-2">
-          <Plus className="h-6 w-6 text-primary" />
-          <span className="text-xl font-bold">MedFirst</span>
+          <MedicalCross className="h-8 w-8 text-primary" />
+          <span className="text-2xl font-bold text-primary">MedFirst</span>
         </Link>
-        <NavigationMenu className="hidden md:flex">
-          <NavigationMenuList>
-            <NavigationMenuItem>
-              <Link href="/" legacyBehavior passHref>
-                <NavigationMenuLink className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50">
-                  Home
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>About</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <div className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                  <div className="grid gap-1">
-                    <h3 className="text-sm font-medium leading-none">About Us</h3>
-                    <p className="line-clamp-2 text-sm text-muted-foreground">
-                      Learn about our mission to provide quality healthcare
-                    </p>
-                  </div>
-                  <div className="grid gap-1">
-                    <h3 className="text-sm font-medium leading-none">Our Team</h3>
-                    <p className="line-clamp-2 text-sm text-muted-foreground">
-                      Meet our experienced healthcare professionals
-                    </p>
-                  </div>
-                </div>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>Hospitals</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <div className="grid gap-3 p-4 md:w-[400px] lg:w-[500px]">
-                  <div className="grid gap-1">
-                    <h3 className="text-sm font-medium leading-none">Locations</h3>
-                    <p className="line-clamp-2 text-sm text-muted-foreground">Find a hospital near you</p>
-                  </div>
-                  <div className="grid gap-1">
-                    <h3 className="text-sm font-medium leading-none">Specialties</h3>
-                    <p className="line-clamp-2 text-sm text-muted-foreground">Explore our specialized departments</p>
-                  </div>
-                </div>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>Services</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <div className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                  <div className="grid gap-1">
-                    <h3 className="text-sm font-medium leading-none">OPD Consultations</h3>
-                    <p className="line-clamp-2 text-sm text-muted-foreground">
-                      Book an appointment with our specialists
-                    </p>
-                  </div>
-                  <div className="grid gap-1">
-                    <h3 className="text-sm font-medium leading-none">Lab Tests</h3>
-                    <p className="line-clamp-2 text-sm text-muted-foreground">Complete range of diagnostic services</p>
-                  </div>
-                </div>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
+        <nav className="hidden lg:flex items-center space-x-8">
+          {navItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="text-sm font-medium text-gray-700 hover:text-primary transition-colors duration-200"
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
         <div className="flex items-center space-x-4">
-          <Link href="/login">
-            <Button variant="ghost">Login</Button>
-          </Link>
-          <Link href="/register">
-            <Button className="bg-primary hover:bg-primary/90">Register</Button>
-          </Link>
+          <Button variant="outline" asChild className="hidden sm:inline-flex">
+            <Link href="/login">Login</Link>
+          </Button>
+          <Button asChild className="hidden sm:inline-flex">
+            <Link href="/register">Register</Link>
+          </Button>
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon" className="lg:hidden">
+                <Menu className="h-6 w-6" />
+                <span className="sr-only">Toggle menu</span>
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="p-0 bg-white">
+              <div className="flex flex-col h-full">
+                <div className="p-4 border-b">
+                  <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)}>
+                    <X className="h-6 w-6" />
+                  </Button>
+                </div>
+                <nav className="flex flex-col space-y-4 p-4">
+                  <AnimatePresence>
+                    {navItems.map((item, index) => (
+                      <motion.div
+                        key={item.href}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ duration: 0.3, delay: index * 0.1 }}
+                      >
+                        <Link
+                          href={item.href}
+                          className="block py-2 text-lg font-medium text-gray-800 hover:text-primary transition-colors duration-200"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          {item.label}
+                        </Link>
+                      </motion.div>
+                    ))}
+                  </AnimatePresence>
+                </nav>
+                <div className="mt-auto p-4 bg-gray-100">
+                  <div className="grid grid-cols-2 gap-4">
+                    <Button variant="outline" asChild className="w-full">
+                      <Link href="/login">Login</Link>
+                    </Button>
+                    <Button asChild className="w-full">
+                      <Link href="/register">Register</Link>
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
     </header>
