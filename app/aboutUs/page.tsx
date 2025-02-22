@@ -9,7 +9,7 @@ const AboutUs = () => {
       <div className="relative h-[400px] group">
         <Image
           src="about-background.jpg" 
-          alt="Hospital Building"
+          alt="Hospital image"
           fill
           className="object-cover brightness-50 transition-transform duration-500 group-hover:scale-105"
         />
