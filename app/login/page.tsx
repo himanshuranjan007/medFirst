@@ -19,31 +19,25 @@ export default function LoginPage() {
     <div className="flex min-h-screen">
       <div className="flex-1 bg-white">
         <div className="container relative flex min-h-[800px] flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
-          <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
-            <div className="absolute inset-0 bg-primary" />
-            <div className="relative z-20 flex items-center text-lg font-medium">
-              <Plus className="mr-2 h-6 w-6" /> MedFirst
+          <div className="relative hidden h-full flex-col lg:flex">
+            <div className="absolute inset-0">
+              <img src="/images/login.jpg" className="object-cover w-full h-full " alt="Login Background" />
             </div>
+            
             <div className="relative z-20 mt-auto">
-              <blockquote className="space-y-2">
-                <p className="text-lg">
-                  "This platform has revolutionized how we manage our healthcare services. The ease of use and efficiency is
-                  remarkable."
-                </p>
-                <footer className="text-sm">Dr. Sarah Johnson</footer>
-              </blockquote>
+              
             </div>
           </div>
           <div className="lg:p-8">
-            <Card className="mx-auto max-w-sm">
+            <Card className="mx-auto max-w-sm transform transition-transform duration-300 hover:scale-105">
               <CardHeader className="space-y-1">
                 <CardTitle className="text-center text-2xl">Login</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="userType">User Type</Label>
-                  <Select>
-                    <SelectTrigger>
+                  <Select >
+                    <SelectTrigger className="hover:border-orange-500 focus:border-orange-500">
                       <SelectValue placeholder="Select user type" />
                     </SelectTrigger>
                     <SelectContent>
@@ -55,12 +49,12 @@ export default function LoginPage() {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="email">Email</Label>
-                  <Input id="email" placeholder="m@example.com" type="email" required />
+                  <Input id="email" placeholder="m@example.com" type="email" required className="hover:border-orange-500 focus:border-orange-500" />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="password">Password</Label>
                   <div className="relative">
-                    <Input id="password" type={showPassword ? "text" : "password"} required />
+                    <Input id="password" type={showPassword ? "text" : "password"} required className="hover:border-orange-500 focus:border-orange-500" />
                     <Button
                       variant="ghost"
                       size="icon"
