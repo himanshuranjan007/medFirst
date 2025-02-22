@@ -16,7 +16,9 @@ export function TestimonialCard({ name, role, image, quote, description, rating 
     <Card>
       <CardHeader>
         <div className="flex items-center gap-4">
-          <Image src={image || "/placeholder.svg"} alt={name} width={48} height={48} className="rounded-full" />
+          <div className="relative w-24 h-24">
+            <Image src={image || "/placeholder.svg"} alt={name} layout="fill" objectFit="cover"  className="rounded-full" />
+          </div>
           <div>
             <h3 className="font-semibold">{name}</h3>
             <p className="text-sm text-muted-foreground">{role}</p>
