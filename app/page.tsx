@@ -24,7 +24,7 @@ export default function Home() {
               </p>
               <div className="flex flex-col gap-4 min-[400px]:flex-row">
                 <Button size="lg" variant="secondary" asChild>
-                  <Link href="/book">Book Appointment</Link>
+                  <Link href="/opd-registration">Book Appointment</Link>
                 </Button>
                 <Button variant="outline" size="lg" className="bg-white/10 text-white hover:bg-white/20" asChild>
                   <Link href="/services">Explore Services</Link>
