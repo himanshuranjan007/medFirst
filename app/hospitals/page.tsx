@@ -1,3 +1,6 @@
+"use client"  // Add this to enable client-side functionality
+
+import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
@@ -5,6 +8,19 @@ import { Search } from "lucide-react"
 import hospitalsData from "./hospitalsData"
 
 export default function HospitalsPage() {
+  const [searchQuery, setSearchQuery] = useState("")
+
+  // Filter hospitals based on search query
+  const filteredHospitals = hospitalsData.filter((hospital) => {
+    const searchTerm = searchQuery.toLowerCase()
+    return (
+      hospital.name.toLowerCase().includes(searchTerm) ||
+      hospital.address.city.toLowerCase().includes(searchTerm) ||
+      hospital.address.state.toLowerCase().includes(searchTerm) ||
+      hospital.departments.some(dept => dept.toLowerCase().includes(searchTerm))
+    )
+  })
+
   return (
     <div className="container mx-auto py-10">
       <h1 className="text-4xl font-bold mb-8">Our Partner Hospitals</h1>
@@ -12,12 +28,17 @@ export default function HospitalsPage() {
       <div className="mb-6">
         <div className="relative">
           <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
-          <Input placeholder="Search hospitals" className="pl-8" />
+          <Input 
+            placeholder="Search hospitals by name, city, state or department" 
+            className="pl-8"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
         </div>
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {hospitalsData.map((hospital) => (
+        {filteredHospitals.map((hospital) => (
           <Card key={hospital._id}>
             <CardHeader>
               <CardTitle>{hospital.name}</CardTitle>
@@ -48,6 +69,12 @@ export default function HospitalsPage() {
           </Card>
         ))}
       </div>
+
+      {filteredHospitals.length === 0 && (
+        <div className="text-center text-gray-500 mt-8">
+          No hospitals found matching your search criteria.
+        </div>
+      )}
     </div>
   )
 }
