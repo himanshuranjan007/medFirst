@@ -32,17 +32,17 @@ export function Footer() {
             <h3 className="text-lg font-bold">Services</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/services/opd" className="text-sm hover:text-primary transition-colors">
+                <Link href="/services" className="text-sm hover:text-primary transition-colors">
                   OPD Consultations
                 </Link>
               </li>
               <li>
-                <Link href="/services/lab" className="text-sm hover:text-primary transition-colors">
+                <Link href="/services" className="text-sm hover:text-primary transition-colors">
                   Lab Tests
                 </Link>
               </li>
               <li>
-                <Link href="/services/checkup" className="text-sm hover:text-primary transition-colors">
+                <Link href="/services" className="text-sm hover:text-primary transition-colors">
                   Health Checkup
                 </Link>
               </li>
