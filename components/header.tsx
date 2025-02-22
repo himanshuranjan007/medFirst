@@ -67,11 +67,6 @@ export function Header() {
             </SheetTrigger>
             <SheetContent side="right" className="p-0 bg-white">
               <div className="flex flex-col h-full">
-                <div className="p-4 border-b">
-                  <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)}>
-                    <X className="h-6 w-6" />
-                  </Button>
-                </div>
                 <nav className="flex flex-col space-y-4 p-4">
                   <AnimatePresence>
                     {navItems.map((item, index) => (
