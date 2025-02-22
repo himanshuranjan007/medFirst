@@ -21,15 +21,15 @@ export default function OPDRegistrationPage() {
           <div className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="name">Name</Label>
-              <Input id="name" required />
+              <Input id="name" required className="hover:border-orange-500 focus:border-orange-500" />
             </div>
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" required />
+              <Input id="email" type="email" required className="hover:border-orange-500 focus:border-orange-500" />
             </div>
             <div className="space-y-2">
               <Label htmlFor="age">Age</Label>
-              <Input id="age" type="number" required />
+              <Input id="age" type="number" required className="hover:border-orange-500 focus:border-orange-500" />
             </div>
             <div className="space-y-2">
               <Label htmlFor="gender">Gender</Label>
@@ -51,23 +51,23 @@ export default function OPDRegistrationPage() {
           <div className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="contact">Contact Number</Label>
-              <Input id="contact" type="tel" required />
+              <Input id="contact" type="tel" required className="hover:border-orange-500 focus:border-orange-500"/>
             </div>
             <div className="space-y-2">
               <Label htmlFor="address">Address</Label>
-              <Textarea id="address" required />
+              <Textarea id="address" required className="hover:border-orange-500 focus:border-orange-500" />
             </div>
             <div className="space-y-2">
               <Label htmlFor="pincode">Pincode</Label>
-              <Input id="pincode" required />
+              <Input id="pincode" required className="hover:border-orange-500 focus:border-orange-500"/>
             </div>
             <div className="space-y-2">
               <Label htmlFor="department">Department</Label>
-              <Select>
+              <Select >
                 <SelectTrigger>
-                  <SelectValue placeholder="Select department" />
-                </SelectTrigger>
-                <SelectContent>
+                  <SelectValue placeholder="Select department"  />
+                </SelectTrigger >
+                <SelectContent >
                   <SelectItem value="cardiology">Cardiology</SelectItem>
                   <SelectItem value="orthopedics">Orthopedics</SelectItem>
                   <SelectItem value="pediatrics">Pediatrics</SelectItem>
@@ -80,15 +80,15 @@ export default function OPDRegistrationPage() {
         return (
           <div className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="date">Date</Label>
+              <Label htmlFor="date" >Date</Label>
               <div className="relative">
-                <Input id="date" type="date" required className="w-full" />
+                <Input id="date" type="date" required className="w-full"  />
                 <Calendar className="absolute right-3 top-2.5 h-5 w-5 text-muted-foreground" />
               </div>
             </div>
             <div className="space-y-2">
               <Label htmlFor="report">Upload Report (Optional)</Label>
-              <Input
+              <Input className="hover:border-orange-500 focus:border-orange-500"
                 id="report"
                 type="file"
                 accept=".pdf,.doc,.docx"
@@ -103,7 +103,7 @@ export default function OPDRegistrationPage() {
             </div>
             <div className="space-y-2">
               <Label htmlFor="reason">Reason for Visit</Label>
-              <Textarea id="reason" placeholder="Enter the reason for your visit" required />
+              <Textarea id="reason" placeholder="Enter the reason for your visit" required  />
             </div>
           </div>
         )
@@ -116,7 +116,7 @@ export default function OPDRegistrationPage() {
     <div className="flex min-h-screen">
       <div className="flex-1 bg-white">
         <div className="container flex min-h-screen flex-col items-center justify-center py-8">
-          <Card className="w-full max-w-lg">
+          <Card className="w-full max-w-lg transform transition-transform duration-300 hover:scale-105">
             <CardHeader className="space-y-1">
               <CardTitle className="text-center text-2xl">OPD Registration</CardTitle>
               <div className="flex justify-center space-x-4">
