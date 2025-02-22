@@ -9,7 +9,7 @@ export function Footer() {
       <div className="container py-12 md:py-16">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-4">
-            <h3 className="text-lg font-bold">About</h3>
+            <h3 className="text-lg font-bold">About us you</h3>
             <ul className="space-y-2">
               <li>
                 <Link href="/about" className="text-sm hover:text-primary transition-colors">
