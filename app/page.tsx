@@ -79,7 +79,7 @@ export default function Home() {
       <InsightsSection />
 
       {/* Testimonials Section */}
-      <section className="py-16 md:py-24 bg-orange-50">
+      <section className="py-16 md:py-24 bg-orange-200">
         <div className="container px-4 md:px-6">
           <h2 className="text-3xl font-bold tracking-tighter text-center mb-12">What Our Community Says</h2>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 ">
