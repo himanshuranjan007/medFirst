@@ -14,6 +14,20 @@ import { Textarea } from "@/components/ui/textarea"
 export default function RegisterPage() {
   const [step, setStep] = useState(1)
   const [showPassword, setShowPassword] = useState(false)
+  const [formData, setFormData] = useState({
+    userType: "",
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    street: "",
+    city: "",
+    state: "",
+    pincode: "",
+    website: "",
+    department: "",
+    services: "",
+  })
 
   const renderStep = () => {
     switch (step) {
@@ -22,7 +36,7 @@ export default function RegisterPage() {
           <div className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="userType">User Type</Label>
-              <Select>
+              <Select onValueChange={(value) => setFormData({ ...formData, userType: value })}>
                 <SelectTrigger>
                   <SelectValue placeholder="Select user type" />
                 </SelectTrigger>
@@ -35,16 +49,30 @@ export default function RegisterPage() {
             </div>
             <div className="space-y-2">
               <Label htmlFor="name">Name</Label>
-              <Input id="name" required />
+              <Input
+                id="name"
+                required
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              />
             </div>
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" required />
+              <Input
+                id="email"
+                type="email"
+                required
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              />
             </div>
             <div className="space-y-2">
               <Label htmlFor="password">Password</Label>
               <div className="relative">
-                <Input id="password" type={showPassword ? "text" : "password"} required />
+                <Input
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  required
+                  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                />
                 <Button
                   variant="ghost"
                   size="icon"
@@ -59,7 +87,12 @@ export default function RegisterPage() {
             <div className="space-y-2">
               <Label htmlFor="confirmPassword">Confirm Password</Label>
               <div className="relative">
-                <Input id="confirmPassword" type={showPassword ? "text" : "password"} required />
+                <Input
+                  id="confirmPassword"
+                  type={showPassword ? "text" : "password"}
+                  required
+                  onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
+                />
               </div>
             </div>
           </div>
@@ -69,27 +102,47 @@ export default function RegisterPage() {
           <div className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="street">Street</Label>
-              <Input id="street" required />
+              <Input
+                id="street"
+                required
+                onChange={(e) => setFormData({ ...formData, street: e.target.value })}
+              />
             </div>
             <div className="space-y-2">
               <Label htmlFor="city">City</Label>
-              <Input id="city" required />
+              <Input
+                id="city"
+                required
+                onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+              />
             </div>
             <div className="space-y-2">
               <Label htmlFor="state">State</Label>
-              <Input id="state" required />
+              <Input
+                id="state"
+                required
+                onChange={(e) => setFormData({ ...formData, state: e.target.value })}
+              />
             </div>
             <div className="space-y-2">
               <Label htmlFor="pincode">Pin Code</Label>
-              <Input id="pincode" required />
+              <Input
+                id="pincode"
+                required
+                onChange={(e) => setFormData({ ...formData, pincode: e.target.value })}
+              />
             </div>
             <div className="space-y-2">
               <Label htmlFor="website">Website</Label>
-              <Input id="website" type="url" />
+              <Input
+                id="website"
+                type="url"
+                onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+              />
             </div>
             <div className="space-y-2">
               <Label htmlFor="department">Department</Label>
-              <Select>
+              <Select onValueChange={(value) => setFormData({ ...formData, department: value })}>
                 <SelectTrigger>
                   <SelectValue placeholder="Select department" />
                 </SelectTrigger>
@@ -102,7 +155,12 @@ export default function RegisterPage() {
             </div>
             <div className="space-y-2">
               <Label htmlFor="services">Available Services</Label>
-              <Textarea id="services" placeholder="OPD, Cancer Treatment, etc." required />
+              <Textarea
+                id="services"
+                placeholder="OPD, Cancer Treatment, etc."
+                required
+                onChange={(e) => setFormData({ ...formData, services: e.target.value })}
+              />
             </div>
           </div>
         )
@@ -113,7 +171,18 @@ export default function RegisterPage() {
               <h3 className="text-lg font-medium">Review your information</h3>
               <p className="text-sm text-muted-foreground">Please review your information before submitting</p>
             </div>
-            {/* Add summary of entered information here */}
+            <div className="space-y-2">
+              <p><strong>User Type:</strong> {formData.userType}</p>
+              <p><strong>Name:</strong> {formData.name}</p>
+              <p><strong>Email:</strong> {formData.email}</p>
+              <p><strong>Street:</strong> {formData.street}</p>
+              <p><strong>City:</strong> {formData.city}</p>
+              <p><strong>State:</strong> {formData.state}</p>
+              <p><strong>Pincode:</strong> {formData.pincode}</p>
+              <p><strong>Website:</strong> {formData.website}</p>
+              <p><strong>Department:</strong> {formData.department}</p>
+              <p><strong>Available Services:</strong> {formData.services}</p>
+            </div>
           </div>
         )
       default:
@@ -122,7 +191,8 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="container flex min-h-screen w-full items-center justify-center py-8">
+    <div className="container flex min-h-screen w-full items-center justify-center py-8 transform transition-transform duration-300 hover:scale-105">
+
       <Card className="w-full max-w-lg">
         <CardHeader className="space-y-1">
           <CardTitle className="text-center text-2xl">Register</CardTitle>
