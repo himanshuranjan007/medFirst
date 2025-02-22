@@ -5,7 +5,7 @@ import { Facebook, Github, Linkedin, Twitter } from "lucide-react"
 
 export function Footer() {
   return (
-    <footer className="bg-gradient-to-b from-white to-orange-50">
+    <footer className="bg-white">
       <div className="container py-12 md:py-16">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-4">
