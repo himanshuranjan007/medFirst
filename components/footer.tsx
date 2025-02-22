@@ -1,29 +1,28 @@
 import Link from "next/link"
-import { Facebook, Github, Linkedin, Twitter } from "lucide-react"
-
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { Facebook, Github, Linkedin, Twitter } from "lucide-react"
 
 export function Footer() {
   return (
-    <footer className="border-t bg-gray-50/50">
-      <div className="container px-4 py-12 md:px-6">
+    <footer className="bg-gradient-to-b from-white to-orange-50">
+      <div className="container py-12 md:py-16">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-4">
-            <h3 className="text-lg font-bold">About us you</h3>
+            <h3 className="text-lg font-bold">About</h3>
             <ul className="space-y-2">
               <li>
-                <Link className="text-sm hover:underline" href="#">
+                <Link href="/about" className="text-sm hover:text-primary transition-colors">
                   Our Hospital
                 </Link>
               </li>
               <li>
-                <Link className="text-sm hover:underline" href="#">
+                <Link href="/doctors" className="text-sm hover:text-primary transition-colors">
                   Doctors
                 </Link>
               </li>
               <li>
-                <Link className="text-sm hover:underline" href="#">
+                <Link href="/pricing" className="text-sm hover:text-primary transition-colors">
                   Pricing
                 </Link>
               </li>
@@ -33,17 +32,17 @@ export function Footer() {
             <h3 className="text-lg font-bold">Services</h3>
             <ul className="space-y-2">
               <li>
-                <Link className="text-sm hover:underline" href="#">
+                <Link href="/services/opd" className="text-sm hover:text-primary transition-colors">
                   OPD Consultations
                 </Link>
               </li>
               <li>
-                <Link className="text-sm hover:underline" href="#">
+                <Link href="/services/lab" className="text-sm hover:text-primary transition-colors">
                   Lab Tests
                 </Link>
               </li>
               <li>
-                <Link className="text-sm hover:underline" href="#">
+                <Link href="/services/checkup" className="text-sm hover:text-primary transition-colors">
                   Health Checkup
                 </Link>
               </li>
@@ -53,17 +52,17 @@ export function Footer() {
             <h3 className="text-lg font-bold">Contact Us</h3>
             <ul className="space-y-2">
               <li>
-                <Link className="text-sm hover:underline" href="#">
+                <Link href="/contact" className="text-sm hover:text-primary transition-colors">
                   Business
                 </Link>
               </li>
               <li>
-                <Link className="text-sm hover:underline" href="#">
+                <Link href="/contact" className="text-sm hover:text-primary transition-colors">
                   Support
                 </Link>
               </li>
               <li>
-                <Link className="text-sm hover:underline" href="#">
+                <Link href="/contact" className="text-sm hover:text-primary transition-colors">
                   Customer Care
                 </Link>
               </li>
@@ -71,38 +70,38 @@ export function Footer() {
           </div>
           <div className="space-y-4">
             <h3 className="text-lg font-bold">Newsletter</h3>
-            <p className="text-sm text-gray-600">Subscribe to our newsletter for updates and health tips.</p>
-            <div className="flex space-x-2">
-              <Input placeholder="Enter your email" type="email" />
-              <Button className="bg-primary hover:bg-primary/90">Subscribe</Button>
+            <div className="flex max-w-sm flex-col gap-2">
+              <p className="text-sm text-muted-foreground">Subscribe to our newsletter for updates and health tips.</p>
+              <div className="flex gap-2">
+                <Input placeholder="Enter your email" type="email" />
+                <Button>Subscribe</Button>
+              </div>
             </div>
           </div>
         </div>
-        <div className="mt-8 flex flex-col items-center justify-between space-y-4 border-t pt-8 md:flex-row md:space-y-0">
-          <div className="flex space-x-4">
-            <Link className="text-gray-500 hover:text-primary" href="#">
-              <Facebook className="h-6 w-6" />
-              <span className="sr-only">Facebook</span>
-            </Link>
-            <Link className="text-gray-500 hover:text-primary" href="#">
-              <Twitter className="h-6 w-6" />
-              <span className="sr-only">Twitter</span>
-            </Link>
-            <Link className="text-gray-500 hover:text-primary" href="#">
-              <Linkedin className="h-6 w-6" />
-              <span className="sr-only">LinkedIn</span>
-            </Link>
-            <Link className="text-gray-500 hover:text-primary" href="#">
-              <Github className="h-6 w-6" />
-              <span className="sr-only">GitHub</span>
-            </Link>
+        <div className="mt-8 border-t pt-8">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div className="flex space-x-6">
+              <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                <Facebook className="h-5 w-5" />
+              </Link>
+              <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                <Twitter className="h-5 w-5" />
+              </Link>
+              <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                <Linkedin className="h-5 w-5" />
+              </Link>
+              <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                <Github className="h-5 w-5" />
+              </Link>
+            </div>
+            <p className="text-sm text-muted-foreground">© 2024 MedFirst. All rights reserved.</p>
           </div>
-          <p className="text-sm text-gray-600">© 2024 MedFirst. All rights reserved.</p>
-        </div>
-        <div className="mt-8 text-center text-sm text-gray-600">
-          The information provided on MedFirst is intended for general informational purposes only and should not be
-          considered as medical advice, diagnosis, or treatment. Always seek the advice of a qualified healthcare
-          provider for any medical condition or treatment.
+          <p className="mt-8 text-xs text-muted-foreground">
+            The information provided on MedFirst is intended for general informational purposes only and should not be
+            considered as medical advice, diagnosis, or treatment. Always seek the advice of a qualified healthcare
+            provider for any medical condition or treatment.
+          </p>
         </div>
       </div>
     </footer>
