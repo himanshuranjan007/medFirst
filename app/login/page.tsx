@@ -21,7 +21,7 @@ export default function LoginPage() {
         <div className="container relative flex min-h-[800px] flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
           <div className="relative hidden h-full flex-col lg:flex">
             <div className="absolute inset-0">
-              <img src="/images/login.jpg" className="object-cover w-full h-full " alt="Login Background" />
+              <img src="/login.jpg" className="object-cover w-full h-full opacity-80" alt="Login Background" />
             </div>
             
             <div className="relative z-20 mt-auto">
@@ -36,8 +36,8 @@ export default function LoginPage() {
               <CardContent className="space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="userType">User Type</Label>
-                  <Select >
-                    <SelectTrigger className="hover:border-orange-500 focus:border-orange-500">
+                  <Select>
+                    <SelectTrigger className="hover:border-orange-500 focus:border-transparent focus:ring-0 border border-gray-300">
                       <SelectValue placeholder="Select user type" />
                     </SelectTrigger>
                     <SelectContent>
@@ -49,12 +49,23 @@ export default function LoginPage() {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="email">Email</Label>
-                  <Input id="email" placeholder="m@example.com" type="email" required className="hover:border-orange-500 focus:border-orange-500" />
+                  <Input
+                    id="email"
+                    placeholder="m@example.com"
+                    type="email"
+                    required
+                    className="hover:border-orange-500 focus:border-transparent focus:ring-0 border border-gray-300"
+                  />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="password">Password</Label>
                   <div className="relative">
-                    <Input id="password" type={showPassword ? "text" : "password"} required className="hover:border-orange-500 focus:border-orange-500" />
+                    <Input
+                      id="password"
+                      type={showPassword ? "text" : "password"}
+                      required
+                      className="hover:border-orange-500 focus:border-transparent focus:ring-0 border border-gray-300"
+                    />
                     <Button
                       variant="ghost"
                       size="icon"
