@@ -1,115 +1,277 @@
-import { Button } from "@/components/ui/button"
-import { Phone, Share2, UserPlus } from "lucide-react"
-import Image from "next/image"
-import Link from "next/link"
-import { ServiceCard } from "@/components/service-card"
-import { TestimonialCard } from "@/components/testimonial-card"
-import { InsightsSection } from "@/components/insights-section"
+"use client"
 
-export default function Home() {
-  return (
-    <div className="flex flex-col min-h-screen">
-      {/* Hero Section */}
-      <section className="relative py-20 md:py-32 gradient-bg text-white">
-        <div className="container px-4 md:px-6">
-          <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
-            <div className="space-y-4">
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                New Era <br />
-                <span className="text-orange-200">Smart OPD</span>
-              </h1>
-              <p className="max-w-[600px] text-orange-100 md:text-xl">
-                Experience seamless healthcare management with our innovative OPD system. Book appointments, manage
-                queues, and access medical resources all in one place.
-              </p>
-              <div className="flex flex-col gap-4 min-[400px]:flex-row">
-                <Button size="lg" variant="secondary" asChild>
-                  <Link href="/opd-registration">Book Appointment</Link>
-                </Button>
-                <Button variant="outline" size="lg" className="bg-white/10 text-white hover:bg-white/20" asChild>
-                  <Link href="/services">Explore Services</Link>
+import { useState } from "react"
+import Link from "next/link"
+import { Eye, EyeOff } from "lucide-react"
+
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Textarea } from "@/components/ui/textarea"
+
+export default function RegisterPage() {
+  const [step, setStep] = useState(1)
+  const [showPassword, setShowPassword] = useState(false)
+  const [formData, setFormData] = useState({
+    userType: "",
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    street: "",
+    city: "",
+    state: "",
+    pincode: "",
+    department: "",
+    services: "",
+  })
+
+  const renderStep = () => {
+    switch (step) {
+      case 1:
+        return (
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="userType">User Type</Label>
+              <Select onValueChange={(value) => setFormData({ ...formData, userType: value })}>
+                <SelectTrigger className="hover:border-orange-500 focus:border-orange-500">
+                  <SelectValue placeholder="Select user type" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="hospital">Hospital</SelectItem>
+                  <SelectItem value="doctor">Doctor</SelectItem>
+                  <SelectItem value="patient">Patient</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="name">Name</Label>
+              <Input
+                className="hover:border-orange-500 focus:border-transparent focus:ring-0 border border-gray-300"
+                id="name"
+                required
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="email">Email</Label>
+              <Input
+                className="hover:border-orange-500 focus:border-transparent focus:ring-0 border border-gray-300"
+                id="email"
+                type="email"
+                required
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="password">Password</Label>
+              <div className="relative">
+                <Input
+                  className="hover:border-orange-500 focus:border-transparent focus:ring-0 border border-gray-300"
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  required
+                  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                />
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="absolute right-0 top-0"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                  <span className="sr-only">Toggle password visibility</span>
                 </Button>
               </div>
             </div>
-            <div className="mx-auto lg:mr-0">
-              <Image
-                src="/front.webp"
-                alt="Healthcare Dashboard"
-                className="aspect-video overflow-hidden rounded-xl object-cover shadow-2xl w-full"
-                width={500}
-                height={300}
+            <div className="space-y-2">
+              <Label htmlFor="confirmPassword">Confirm Password</Label>
+              <Input
+                className="hover:border-orange-500 focus:border-transparent focus:ring-0 border border-gray-300"
+                id="confirmPassword"
+                type={showPassword ? "text" : "password"}
+                required
+                onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
               />
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Services Section */}
-      <section className="py-16 md:py-24">
-        <div className="container px-4 md:px-6">
-          <div className="flex flex-col items-center justify-center space-y-4 text-center">
+        )
+      case 2:
+        return (
+          <div className="space-y-4">
             <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Our Services</h2>
-              <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Comprehensive healthcare solutions designed to make your experience better
-              </p>
+              <Label htmlFor="street">Street</Label>
+              <Input
+                className="hover:border-orange-500 focus:border-transparent focus:ring-0 border border-gray-300"
+                id="street"
+                required
+                onChange={(e) => setFormData({ ...formData, street: e.target.value })}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="city">City</Label>
+              <Input
+                className="hover:border-orange-500 focus:border-transparent focus:ring-0 border border-gray-300"
+                id="city"
+                required
+                onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="state">State</Label>
+              <Input
+                className="hover:border-orange-500 focus:border-transparent focus:ring-0 border border-gray-300"
+                id="state"
+                required
+                onChange={(e) => setFormData({ ...formData, state: e.target.value })}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="pincode">Pin Code</Label>
+              <Input
+                className="hover:border-orange-500 focus:border-transparent focus:ring-0 border border-gray-300"
+                id="pincode"
+                required
+                onChange={(e) => setFormData({ ...formData, pincode: e.target.value })}
+              />
+            </div>
+          
+            <div className="space-y-2">
+              <Label htmlFor="department">Department</Label>
+              <Select onValueChange={(value) => setFormData({ ...formData, department: value })}>
+                <SelectTrigger className="hover:border-orange-500 focus:border-orange-500">
+                  <SelectValue placeholder="Select department" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="cardiology">Cardiology</SelectItem>
+                  <SelectItem value="orthopedics">Orthopedics</SelectItem>
+                  <SelectItem value="pediatrics">Pediatrics</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="services">Available Services</Label>
+              <Textarea
+                className="hover:border-orange-500 focus:border-transparent focus:ring-0 border border-gray-300"
+                id="services"
+                placeholder="OPD, Cancer Treatment, etc."
+                required
+                onChange={(e) => setFormData({ ...formData, services: e.target.value })}
+              />
             </div>
           </div>
-          <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-3">
-            <ServiceCard
-              icon={<UserPlus className="h-6 w-6" />}
-              title="Easy Registration"
-              description="Quickly and easily register for your OPD appointment with just a few simple steps. Save time by avoiding long waits and secure your preferred time slot hassle-free."
-            />
-            <ServiceCard
-              icon={<Share2 className="h-6 w-6" />}
-              title="Medical Resource Data Sharing"
-              description="Stay updated on the latest data regarding hospital equipment to ensure you have access to the most current information."
-            />
-            <ServiceCard
-              icon={<Phone className="h-6 w-6" />}
-              title="24/7 Support"
-              description="We are here to assist you at any time of the day, ensuring you receive the support you need whenever it's convenient for you."
-            />
+        )
+      case 3:
+        return (
+          <div className="space-y-4">
+            <div className="text-center">
+              <h3 className="text-lg font-medium">Review your information</h3>
+              <p className="text-sm text-muted-foreground">Please review your information before submitting</p>
+            </div>
+            <div className="space-y-2">
+              <p><strong>User Type:</strong> {formData.userType}</p>
+              <p><strong>Name:</strong> {formData.name}</p>
+              <p><strong>Email:</strong> {formData.email}</p>
+              <p><strong>Street:</strong> {formData.street}</p>
+              <p><strong>City:</strong> {formData.city}</p>
+              <p><strong>State:</strong> {formData.state}</p>
+              <p><strong>Pincode:</strong> {formData.pincode}</p>
+              <p><strong>Department:</strong> {formData.department}</p>
+              <p><strong>Available Services:</strong> {formData.services}</p>
+            </div>
           </div>
-        </div>
-      </section>
+        )
+      default:
+        return null
+    }
+  }
 
-      {/* Insights Section */}
-      <InsightsSection />
+  const handleNextStep = () => {
+    // Validation logic based on the current step
+    if (step === 1) {
+      if (!formData.userType || !formData.name || !formData.email || !formData.password || !formData.confirmPassword) {
+        alert("Please fill in all required fields in Step 1.");
+        return;
+      }
+    } else if (step === 2) {
+      if (!formData.street || !formData.city || !formData.state || !formData.pincode || !formData.department || !formData.services) {
+        alert("Please fill in all required fields in Step 2.");
+        return;
+      }
+    }
+    // Move to the next step if validation passes
+    setStep(step + 1);
+  }
 
-      {/* Testimonials Section */}
-      <section className="py-16 md:py-24 bg-orange-200">
-        <div className="container px-4 md:px-6">
-          <h2 className="text-3xl font-bold tracking-tighter text-center mb-12">What Our Community Says</h2>
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 ">
-            <TestimonialCard
-              name="Emily Johnson"
-              role="Patient"
-              image="/doctor1.webp"
-              quote="Exceptional care and attention."
-              description="The staff was attentive, and the facilities were top-notch. I couldn't have asked for better care."
-              rating={4}
-            />
-            <TestimonialCard
-              name="Dr. Michael Chen"
-              role="Doctor"
-              image="/doctor2.webp"
-              quote="State-of-the-art facilities."
-              description="As a doctor, I'm impressed by the hospital's commitment to providing the best care possible."
-              rating={5}
-            />
-            <TestimonialCard
-              name="Sarah Thompson"
-              role="Nurse"
-              image="/doctor3.jpg"
-              quote="Efficient and caring team."
-              description="Our nursing staff works tirelessly to ensure patient comfort and quick recovery."
-              rating={4}
-            />
-          </div>
+  // Check if all required fields are filled for the current step
+  const isContinueDisabled = () => {
+    if (step === 1) {
+      return !formData.userType || !formData.name || !formData.email || !formData.password || !formData.confirmPassword;
+    } else if (step === 2) {
+      return !formData.street || !formData.city || !formData.state || !formData.pincode || !formData.department || !formData.services;
+    }
+    return false;
+  }
+
+  return (
+    <div className="flex min-h-screen" style={{ backgroundImage: "url('/register.jpg')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <div className="flex-1 bg-white bg-opacity-50">
+        <div className="container flex min-h-screen w-full items-center justify-center py-8">
+          <Card className="w-full max-w-lg transform transition-transform duration-300 hover:scale-105">
+            <CardHeader className="space-y-1">
+              <CardTitle className="text-center text-2xl">Register</CardTitle>
+              <div className="flex justify-center space-x-4">
+                {[1, 2, 3].map((number) => (
+                  <div
+                    key={number}
+                    className={`flex h-8 w-8 items-center justify-center rounded-full ${
+                      step === number ? "bg-primary text-white" : "bg-muted text-muted-foreground"
+                    }`}
+                  >
+                    {number}
+                  </div>
+                ))}
+              </div>
+            </CardHeader>
+            <CardContent>
+              <form className="space-y-4">
+                {renderStep()}
+                <div className="flex justify-between">
+                  {step > 1 && (
+                    <Button type="button" variant="outline" onClick={() => setStep(step - 1)}>
+                      Back
+                    </Button>
+                  )}
+                  {step < 3 ? (
+                    <Button
+                      type="button"
+                      className="ml-auto bg-primary hover:bg-primary/90"
+                      onClick={handleNextStep}
+                      disabled={isContinueDisabled()}
+                    >
+                      Continue
+                    </Button>
+                  ) : (
+                    <Button type="submit" className="ml-auto bg-primary hover:bg-primary/90">
+                      Register
+                    </Button>
+                  )}
+                </div>
+              </form>
+              {step === 1 && (
+                <div className="mt-4 text-center text-sm">
+                  Already have an account?{" "}
+                  <Link href="/login" className="text-primary hover:underline">
+                    Login
+                  </Link>
+                </div>
+              )}
+            </CardContent>
+          </Card>
         </div>
-      </section>
+      </div>
     </div>
   )
 }
